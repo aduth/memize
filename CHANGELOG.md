@@ -1,4 +1,4 @@
-#### v1.0.1 (---)
+#### v1.0.1 (2017-08-09)
 
 - Internal: Include repository details in `package.json`
 
