@@ -23,6 +23,13 @@
     "memoisation",
     "cache"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aduth/memize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aduth/memize/issues"
+  },
   "author": {
     "name": "Andrew Duthie",
     "email": "andrew@andrewduthie.com",
