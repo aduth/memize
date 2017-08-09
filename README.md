@@ -62,49 +62,49 @@ __Single argument__
 
 ![Benchmark](https://cldup.com/BbpWXvSdjR.png)
 
-Name               │ Ops / sec  │ Relative margin of error
--------------------|------------|-------------------------
-memize             │ 46,802,274 │ ± 0.95%
-moize              │ 36,659,057 │ ± 1.09%
-fast-memoize       │ 28,318,096 │ ± 2.31%
-moize (serialized) │ 14,363,716 │ ± 0.82%
-underscore         │ 12,934,260 │ ± 0.75%
-lru-memoize        │ 11,648,537 │ ± 1.13%
-memoizee           │ 11,120,460 │ ± 1.02%
-lodash             │ 9,896,950  │ ± 0.51%
-memoizerific       │ 2,252,795  │ ± 1.26%
-memoizejs          │ 1,357,025  │ ± 0.76%
-ramda              │ 1,109,387  │ ± 0.85%
+| Name               | Ops / sec  | Relative margin of error |
+| -------------------|------------|------------------------- |
+| memize             | 46,802,274 | ± 0.95%                  |
+| moize              | 36,659,057 | ± 1.09%                  |
+| fast-memoize       | 28,318,096 | ± 2.31%                  |
+| moize (serialized) | 14,363,716 | ± 0.82%                  |
+| underscore         | 12,934,260 | ± 0.75%                  |
+| lru-memoize        | 11,648,537 | ± 1.13%                  |
+| memoizee           | 11,120,460 | ± 1.02%                  |
+| lodash             | 9,896,950  | ± 0.51%                  |
+| memoizerific       | 2,252,795  | ± 1.26%                  |
+| memoizejs          | 1,357,025  | ± 0.76%                  |
+| ramda              | 1,109,387  | ± 0.85%                  |
 
 __Multiple arguments (primitive)__
 
 ![Benchmark](https://cldup.com/R5LPxwxpAH.png)
 
-Name               │ Ops / sec  │ Relative margin of error
--------------------|------------|-------------------------
-memize             │ 35,171,560 │ ± 0.62%
-moize              │ 22,314,974 │ ± 1.01%
-moize (serialized) │ 11,188,031 │ ± 0.84%
-lru-memoize        │ 8,625,528  │ ± 1.83%
-memoizee           │ 8,435,400  │ ± 0.77%
-memoizerific       │ 1,438,243  │ ± 1.04%
-memoizejs          │ 1,130,111  │ ± 0.61%
-fast-memoize       │ 754,958    │ ± 0.64%
+| Name               | Ops / sec  | Relative margin of error |
+| -------------------|------------|------------------------- |
+| memize             | 35,171,560 | ± 0.62%                  |
+| moize              | 22,314,974 | ± 1.01%                  |
+| moize (serialized) | 11,188,031 | ± 0.84%                  |
+| lru-memoize        | 8,625,528  | ± 1.83%                  |
+| memoizee           | 8,435,400  | ± 0.77%                  |
+| memoizerific       | 1,438,243  | ± 1.04%                  |
+| memoizejs          | 1,130,111  | ± 0.61%                  |
+| fast-memoize       | 754,958    | ± 0.64%                  |
 
 __Multiple arguments (non-primitive)__
 
 ![Benchmark](https://cldup.com/RYJPiEQxC5.png)
 
-Name               │ Ops / sec  │ Relative margin of error
--------------------|------------|-------------------------
-memize             │ 35,439,005 │ ± 0.58%
-moize              │ 22,624,991 │ ± 1.11%
-lru-memoize        │ 8,562,363  │ ± 1.76%
-memoizee           │ 8,424,725  │ ± 1.11%
-moize (serialized) │ 1,575,815  │ ± 0.87%
-memoizerific       │ 1,466,993  │ ± 0.87%
-memoizejs          │ 832,957    │ ± 0.94%
-fast-memoize       │ 649,054    │ ± 0.53%
+| Name               | Ops / sec  | Relative margin of error |
+| -------------------|------------|------------------------- |
+| memize             | 35,439,005 | ± 0.58%                  |
+| moize              | 22,624,991 | ± 1.11%                  |
+| lru-memoize        | 8,562,363  | ± 1.76%                  |
+| memoizee           | 8,424,725  | ± 1.11%                  |
+| moize (serialized) | 1,575,815  | ± 0.87%                  |
+| memoizerific       | 1,466,993  | ± 0.87%                  |
+| memoizejs          | 832,957    | ± 0.94%                  |
+| fast-memoize       | 649,054    | ± 0.53%                  |
 
 ## How it works
 
