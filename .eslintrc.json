@@ -1,8 +1,18 @@
 {
 	"root": true,
 	"parserOptions": {
-		"ecmaVersion": 5
+		"ecmaVersion": 6,
+		"sourceType": "module"
 	},
+	"overrides": [
+		{
+			"files": [ "./index.js" ],
+			"parserOptions": {
+				"ecmaVersion": 5,
+				"sourceType": "script"
+			}
+		}
+	],
 	"env": {
 		"node": true,
 		"mocha": true

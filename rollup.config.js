@@ -1,6 +1,6 @@
-var commonjs = require( 'rollup-plugin-commonjs' );
+const commonjs = require( 'rollup-plugin-commonjs' );
 
-module.exports = {
+export default {
 	entry: 'index.js',
 	dest: 'dist/memize.js',
 	moduleName: 'memize',
