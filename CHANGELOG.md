@@ -1,3 +1,7 @@
+#### v1.0.2 (---)
+
+- Fix: Resolve infinite loop which can occur due to lingering references in recalling from previous cache
+
 #### v1.0.1 (2017-08-09)
 
 - Internal: Include repository details in `package.json`

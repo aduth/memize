@@ -1,7 +1,7 @@
 Memize
 ======
 
-Memize is a unabashedly-barebones memoization library with an aim toward speed. By all accounts, Memize is __the fastest memoization implementation__ in JavaScript (see [benchmarks](#benchmarks), [how it works](#how-it-works)). It supports multiple arguments, including non-primitive arguments (by reference). All this weighing in at a paltry 0.27kb minified and gzipped, with no dependencies.
+Memize is a unabashedly-barebones memoization library with an aim toward speed. By all accounts, Memize is __the fastest memoization implementation__ in JavaScript (see [benchmarks](#benchmarks), [how it works](#how-it-works)). It supports multiple arguments, including non-primitive arguments (by reference). All this weighing in at less than 0.3kb minified and gzipped, with no dependencies.
 
 ## Example
 
