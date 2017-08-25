@@ -1,4 +1,4 @@
-#### v1.0.2 (---)
+#### v1.0.2 (2017-08-24)
 
 - Fix: Resolve infinite loop which can occur due to lingering references in recalling from previous cache
 
