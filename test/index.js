@@ -104,4 +104,17 @@ describe( 'memoize', () => {
 		assert.equal( add( 3, 4 ), originalAdd( 3, 4 ) );
 		sinon.assert.callCount( spiedAdd, 5 );
 	} );
+
+	it( 'shifts tail on cache hit, only on non-head', () => {
+		// Reason: Covers previous error where tail would shift when also head,
+		// causing tail to become assigned as undefined. This becomes relevant
+		// with `maxSize`, when attempting to drop the tail on cache insert.
+		add = memoize( spiedAdd, { maxSize: 1 } );
+
+		add( 1, 2 );
+		add( 1, 2 );
+		add( 3, 4 );
+
+		sinon.assert.calledTwice( spiedAdd );
+	} );
 } );
