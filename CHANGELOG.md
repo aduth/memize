@@ -1,4 +1,4 @@
-#### v1.0.3 (---)
+#### v1.0.3 (2017-08-30)
 
 - Fix: Resolve error which can occur in certain conditions with `maxSize`
 
