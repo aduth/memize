@@ -1,7 +1,9 @@
 Memize
 ======
 
-Memize is a unabashedly-barebones memoization library with an aim toward speed. By all accounts, Memize is __the fastest memoization implementation__ in JavaScript (see [benchmarks](#benchmarks), [how it works](#how-it-works)). It supports multiple arguments, including non-primitive arguments (by reference). All this weighing in at a paltry 0.27kb minified and gzipped, with no dependencies.
+Memize is a unabashedly-barebones memoization library with an aim toward speed. By all accounts, Memize is __the fastest memoization implementation__ in JavaScript (see [benchmarks](#benchmarks), [how it works](#how-it-works)). It supports multiple arguments, including non-primitive arguments (by reference). All this weighing in at less than 0.3kb minified and gzipped, with no dependencies.
+
+Included are two separate implementations which have different performance characteristics best determined by your real-world requirements. The default implementation is a [last-in first-out (LIFO) stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) optimized for repeated calls with the same arguments, biasing recent access. In cases where memoized invocations aren't predictable, you may find that the [first-in first-out (FIFO) queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) has superior performance. See the [benchmarks](#benchmarks) section for more information.
 
 ## Example
 
@@ -34,9 +36,24 @@ npm install memize
 
 Otherwise, download a pre-built copy from unpkg:
 
-[https://unpkg.com/memize/dist/memize.min.js](https://unpkg.com/memize/dist/memize.min.js)
+- LIFO (default): [https://unpkg.com/memize/dist/memize.min.js](https://unpkg.com/memize/dist/memize.min.js)
+- FIFO: [https://unpkg.com/memize/dist/memize.fifo.min.js](https://unpkg.com/memize/dist/memize.fifo.min.js)
 
 ## Usage
+
+Require or import your desired implementation:
+
+**LIFO:** (default)
+
+```
+const memize = require( 'memize' );
+```
+
+**FIFO:**
+
+```
+const memize = require( 'memize/fifo' );
+```
 
 Memize accepts a function to be memoized, and returns a new memoized function.
 
@@ -64,17 +81,16 @@ __Single argument__
 
 | Name               | Ops / sec  | Relative margin of error |
 | -------------------|------------|------------------------- |
-| memize             | 46,802,274 | ± 0.95%                  |
-| moize              | 36,659,057 | ± 1.09%                  |
-| fast-memoize       | 28,318,096 | ± 2.31%                  |
-| moize (serialized) | 14,363,716 | ± 0.82%                  |
-| underscore         | 12,934,260 | ± 0.75%                  |
-| lru-memoize        | 11,648,537 | ± 1.13%                  |
-| memoizee           | 11,120,460 | ± 1.02%                  |
-| lodash             | 9,896,950  | ± 0.51%                  |
-| memoizerific       | 2,252,795  | ± 1.26%                  |
-| memoizejs          | 1,357,025  | ± 0.76%                  |
-| ramda              | 1,109,387  | ± 0.85%                  |
+| memize             | 70,051,132 | ± 0.70%                  |
+| moize              | 37,436,247 | ± 1.09%                  |
+| fast-memoize       | 29,782,279 | ± 0.53%                  |
+| moize (serialized) | 14,803,756 | ± 0.79%                  |
+| underscore         | 13,626,860 | ± 0.64%                  |
+| lru-memoize        | 11,411,453 | ± 1.36%                  |
+| memoizee           | 10,907,357 | ± 0.95%                  |
+| lodash             | 10,030,070 | ± 0.71%                  |
+| memoizerific       | 2,105,290  | ± 0.95%                  |
+| memoizejs          | 1,447,269  | ± 0.69%                  |
 
 __Multiple arguments (primitive)__
 
@@ -82,14 +98,15 @@ __Multiple arguments (primitive)__
 
 | Name               | Ops / sec  | Relative margin of error |
 | -------------------|------------|------------------------- |
-| memize             | 35,171,560 | ± 0.62%                  |
-| moize              | 22,314,974 | ± 1.01%                  |
-| moize (serialized) | 11,188,031 | ± 0.84%                  |
-| lru-memoize        | 8,625,528  | ± 1.83%                  |
-| memoizee           | 8,435,400  | ± 0.77%                  |
-| memoizerific       | 1,438,243  | ± 1.04%                  |
-| memoizejs          | 1,130,111  | ± 0.61%                  |
-| fast-memoize       | 754,958    | ± 0.64%                  |
+| memize             | 61,267,529 | ± 1.09%                  |
+| moize              | 21,776,270 | ± 1.17%                  |
+| moize (serialized) | 11,333,415 | ± 0.65%                  |
+| lru-memoize        | 8,699,146  | ± 1.45%                  |
+| memoizee           | 8,378,347  | ± 0.56%                  |
+| memoizerific       | 1,488,700  | ± 0.83%                  |
+| memoizejs          | 1,270,654  | ± 0.75%                  |
+| fast-memoize       | 829,686    | ± 0.78%                  |
+
 
 __Multiple arguments (non-primitive)__
 
@@ -97,24 +114,23 @@ __Multiple arguments (non-primitive)__
 
 | Name               | Ops / sec  | Relative margin of error |
 | -------------------|------------|------------------------- |
-| memize             | 35,439,005 | ± 0.58%                  |
-| moize              | 22,624,991 | ± 1.11%                  |
-| lru-memoize        | 8,562,363  | ± 1.76%                  |
-| memoizee           | 8,424,725  | ± 1.11%                  |
-| moize (serialized) | 1,575,815  | ± 0.87%                  |
-| memoizerific       | 1,466,993  | ± 0.87%                  |
-| memoizejs          | 832,957    | ± 0.94%                  |
-| fast-memoize       | 649,054    | ± 0.53%                  |
+| memize             | 63,173,815 | ± 0.94%                  |
+| moize              | 22,757,300 | ± 0.94%                  |
+| lru-memoize        | 8,604,499  | ± 1.45%                  |
+| memoizee           | 8,174,675  | ± 0.61%                  |
+| moize (serialized) | 1,779,956  | ± 0.79%                  |
+| memoizerific       | 1,442,456  | ± 1.53%                  |
+| memoizejs          | 918,693    | ± 0.78%                  |
+| fast-memoize       | 705,157    | ± 0.65%                  |
+
 
 ## How it works
 
 If you haven't already, feel free to [glance over the source code](./index.js). It's fewer than 100 lines of code of heavily commented code, and should help provide substance to the implementation concepts.
 
-Memize creates a [last-in first-out stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) implemented as a [doubly linked list](https://en.wikipedia.org/wiki/Doubly_linked_list). It biases recent access favoring real-world scenarios where the function is subsequently invoked multiple times with the same arguments. The choice to implement as a linked list is due to dramatically better performance characteristics compared to `Array#unshift` for surfacing an entry to the head of the list ([jsperf](https://jsperf.com/array-unshift-linked-list)). A downside of linked lists is inability to efficiently access arbitrary indices, but iterating from the beginning of the cache list is optimized by guaranteeing the list is sorted by recent access / insertion.
+Memize creates its cache as an array where each member is a tuple of arguments and the cached result. Cache lookup occurs by performing a shallow equality comparison between arguments of the current invocation and the cached arguments. Other memoization implementations often use `JSON.stringify` to generate a string key for lookup in an object cache, but this benchmarks much slower than a shallow comparison ([jsperf](https://jsperf.com/lookup-json-stringify-vs-shallow-equality)).
 
-Each node in the list tracks the original arguments as an array. This acts as a key of sorts, matching arguments of the current invocation by performing a shallow equality comparison on the two arrays. Other memoization implementations often use `JSON.stringify` to generate a string key for lookup in an object cache, but this benchmarks much slower than a shallow comparison ([jsperf](https://jsperf.com/lookup-json-stringify-vs-shallow-equality)).
-
-Finally, special care is made toward treatment of `arguments` due to engine-specific deoptimizations which can occur in V8 via [arguments leaking](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments). Order is important here; we only create a shallow clone when necessary, after the cache has been checked, to avoid creating a clone unnecessarily if a cache entry exists. Looking at the code, you'd not be blamed for thinking that dropping the shallow clone would improve performance, but in fact it would _slow_ execution by approximately 60%. This is due to how the lingering `arguments` reference would carry over by reference ("leaks") in the node's `args` property.
+Special care is made toward treatment of `arguments` due to engine-specific deoptimizations which can occur in V8 via [arguments leaking](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments). Order is important here; we only create a shallow clone when necessary, after the cache has been checked, to avoid creating a clone unnecessarily if a cache entry exists. Looking at the code, you'd not be blamed for thinking that dropping the shallow clone would improve performance, but in fact it would _slow_ execution significantly. This is due to how the lingering `arguments` reference would carry over by reference ("leak") in the node's `args` property.
 
 ## License
 

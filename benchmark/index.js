@@ -46,7 +46,8 @@ const memoizejs = require( 'memoizejs' );
 const memoizerific = require( 'memoizerific' );
 const lruMemoize = require( 'lru-memoize' ).default;
 const moize = require( 'moize' );
-const memize = require( '../' );
+const memizeLifo = require( '../' );
+const memizeFifo = require( '../fifo' );
 
 const showResults = ( benchmarkResults ) => {
 	const table = new Table( {
@@ -149,7 +150,8 @@ const runSingleParameterSuite = () => {
 	const mLruMemoize = lruMemoize( Infinity )( fibonacci );
 	const mMoize = moize( fibonacci );
 	const mMoizeSerialize = moize.serialize( fibonacci );
-	const mMemize = memize( fibonacci );
+	const mMemizeLifo = memizeLifo( fibonacci );
+	const mMemizeFifo = memizeFifo( fibonacci );
 
 	return new Promise( ( resolve ) => {
 		fibonacciSuite
@@ -183,8 +185,11 @@ const runSingleParameterSuite = () => {
 			.add( 'moize (serialized)', () => {
 				mMoizeSerialize( fibonacciNumber );
 			} )
-			.add( 'memize', () => {
-				mMemize( fibonacciNumber );
+			.add( 'memize (LIFO)', () => {
+				mMemizeLifo( fibonacciNumber );
+			} )
+			.add( 'memize (FIFO)', () => {
+				mMemizeFifo( fibonacciNumber );
 			} )
 			.on( 'start', () => {
 				console.log( '' );
@@ -217,7 +222,8 @@ const runMultiplePrimitiveSuite = () => {
 	const mLruMemoize = lruMemoize( Infinity )( fibonacciMultiplePrimitive );
 	const mMoize = moize( fibonacciMultiplePrimitive );
 	const mMoizeSerialize = moize.serialize( fibonacciMultiplePrimitive );
-	const mMemize = memize( fibonacciMultiplePrimitive );
+	const mMemizeLifo = memizeLifo( fibonacciMultiplePrimitive );
+	const mMemizeFifo = memizeFifo( fibonacciMultiplePrimitive );
 
 	return new Promise( ( resolve ) => {
 		fibonacciSuite
@@ -242,8 +248,11 @@ const runMultiplePrimitiveSuite = () => {
 			.add( 'moize (serialized)', () => {
 				mMoizeSerialize( fibonacciNumber, isComplete );
 			} )
-			.add( 'memize', () => {
-				mMemize( fibonacciNumber, isComplete );
+			.add( 'memize (LIFO)', () => {
+				mMemizeLifo( fibonacciNumber, isComplete );
+			} )
+			.add( 'memize (FIFO)', () => {
+				mMemizeFifo( fibonacciNumber, isComplete );
 			} )
 			.on( 'start', () => {
 				console.log( '' );
@@ -278,7 +287,8 @@ const runMultipleObjectSuite = () => {
 	const mLruMemoize = lruMemoize( Infinity )( fibonacciMultipleObject );
 	const mMoize = moize( fibonacciMultipleObject );
 	const mMoizeSerialize = moize.serialize( fibonacciMultipleObject );
-	const mMemize = memize( fibonacciMultipleObject );
+	const mMemizeLifo = memizeLifo( fibonacciMultipleObject );
+	const mMemizeFifo = memizeFifo( fibonacciMultipleObject );
 
 	return new Promise( ( resolve ) => {
 		fibonacciSuite
@@ -303,8 +313,11 @@ const runMultipleObjectSuite = () => {
 			.add( 'moize (serialized)', () => {
 				mMoizeSerialize( fibonacciNumber, isComplete );
 			} )
-			.add( 'memize', () => {
-				mMemize( fibonacciNumber, isComplete );
+			.add( 'memize (LIFO)', () => {
+				mMemizeLifo( fibonacciNumber, isComplete );
+			} )
+			.add( 'memize (FIFO)', () => {
+				mMemizeFifo( fibonacciNumber, isComplete );
 			} )
 			.on( 'start', () => {
 				console.log( '' );
@@ -325,6 +338,95 @@ const runMultipleObjectSuite = () => {
 	} );
 };
 
-runSingleParameterSuite()
-	.then( runMultiplePrimitiveSuite )
-	.then( runMultipleObjectSuite );
+const runPrecachedFibonacciSuite = () => {
+	const fibonacciSuite = new Benchmark.Suite( 'Single parameter' );
+	const fibonacciNumber = 35;
+
+	const mUnderscore = underscore( fibonacci );
+	const mLodash = lodash( fibonacci );
+	const mRamda = ramda( fibonacci );
+	const mMemoizee = memoizee( fibonacci );
+	const mFastMemoize = fastMemoize( fibonacci );
+	const mMemoizejs = memoizejs( fibonacci );
+	const mMemoizerific = memoizerific( Infinity )( fibonacci );
+	const mLruMemoize = lruMemoize( Infinity )( fibonacci );
+	const mMoize = moize( fibonacci );
+	const mMoizeSerialize = moize.serialize( fibonacci );
+	const mMemizeLifo = memizeLifo( fibonacci );
+	const mMemizeFifo = memizeFifo( fibonacci );
+
+	mUnderscore( fibonacciNumber );
+	mLodash( fibonacciNumber );
+	mMemoizee( fibonacciNumber );
+	mRamda( fibonacciNumber );
+	mFastMemoize( fibonacciNumber );
+	mMemoizejs( fibonacciNumber );
+	mMemoizerific( fibonacciNumber );
+	mLruMemoize( fibonacciNumber );
+	mMoize( fibonacciNumber );
+	mMoizeSerialize( fibonacciNumber );
+	mMemizeLifo( fibonacciNumber );
+	mMemizeFifo( fibonacciNumber );
+
+	return new Promise( ( resolve ) => {
+		fibonacciSuite
+			.add( 'underscore', () => {
+				mUnderscore( fibonacciNumber );
+			} )
+			.add( 'lodash', () => {
+				mLodash( fibonacciNumber );
+			} )
+			.add( 'memoizee', () => {
+				mMemoizee( fibonacciNumber );
+			} )
+			.add( 'ramda', () => {
+				mRamda( fibonacciNumber );
+			} )
+			.add( 'fast-memoize', () => {
+				mFastMemoize( fibonacciNumber );
+			} )
+			.add( 'memoizejs', () => {
+				mMemoizejs( fibonacciNumber );
+			} )
+			.add( 'memoizerific', () => {
+				mMemoizerific( fibonacciNumber );
+			} )
+			.add( 'lru-memoize', () => {
+				mLruMemoize( fibonacciNumber );
+			} )
+			.add( 'moize', () => {
+				mMoize( fibonacciNumber );
+			} )
+			.add( 'moize (serialized)', () => {
+				mMoizeSerialize( fibonacciNumber );
+			} )
+			.add( 'memize (LIFO)', () => {
+				mMemizeLifo( fibonacciNumber );
+			} )
+			.add( 'memize (FIFO)', () => {
+				mMemizeFifo( fibonacciNumber );
+			} )
+			.on( 'start', () => {
+				console.log( '' );
+				console.log( 'Starting cycles for functions with a single parameter...' );
+
+				results = [];
+
+				spinner.start();
+			} )
+			.on( 'cycle', onCycle )
+			.on( 'complete', () => {
+				onComplete();
+				resolve();
+			} )
+			.run( {
+				async: true
+			} );
+	} );
+};
+
+// runSingleParameterSuite()
+// 	.then( runMultiplePrimitiveSuite )
+// 	.then( runMultipleObjectSuite )
+// 	.then( runPrecachedFibonacciSuite );
+runPrecachedFibonacciSuite();

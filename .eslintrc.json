@@ -6,7 +6,7 @@
 	},
 	"overrides": [
 		{
-			"files": [ "./index.js" ],
+			"files": [ "./index.js", "./fifo.js" ],
 			"parserOptions": {
 				"ecmaVersion": 5,
 				"sourceType": "script"
