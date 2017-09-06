@@ -14,7 +14,7 @@ describe( 'memoize', () => {
 	} );
 
 	it( 'exposes cache clearing method', () => {
-		assert.equal(
+		assert.strictEqual(
 			typeof add.clear,
 			'function'
 		);
@@ -23,7 +23,7 @@ describe( 'memoize', () => {
 	it( 'returns the correct value', () => {
 		const sum = add( 5, 7 );
 
-		assert.equal( sum, originalAdd( 5, 7 ) );
+		assert.strictEqual( sum, originalAdd( 5, 7 ) );
 	} );
 
 	it( 'caches return value', () => {
@@ -32,7 +32,7 @@ describe( 'memoize', () => {
 		sum = add( 5, 7 );
 
 		sinon.assert.calledOnce( spiedAdd );
-		assert.equal( sum, originalAdd( 5, 7 ) );
+		assert.strictEqual( sum, originalAdd( 5, 7 ) );
 	} );
 
 	it( 'caches return value for non-primitive args by reference', () => {
@@ -43,7 +43,7 @@ describe( 'memoize', () => {
 		sum = add( 5, obj );
 
 		sinon.assert.calledOnce( spiedAdd );
-		assert.equal( sum, originalAdd( 5, obj ) );
+		assert.strictEqual( sum, originalAdd( 5, obj ) );
 	} );
 
 	it( 'returns the correct value of differing arguments', () => {
@@ -51,8 +51,8 @@ describe( 'memoize', () => {
 		const secondSum = add( 6, 8 );
 
 		sinon.assert.calledTwice( spiedAdd );
-		assert.equal( firstSum, originalAdd( 5, 7 ) );
-		assert.equal( secondSum, originalAdd( 6, 8 ) );
+		assert.strictEqual( firstSum, originalAdd( 5, 7 ) );
+		assert.strictEqual( secondSum, originalAdd( 6, 8 ) );
 	} );
 
 	it( 'returns the cached value on non-subsequent calls', () => {
@@ -77,31 +77,31 @@ describe( 'memoize', () => {
 		add = memoize( spiedAdd, { maxSize: 2 } );
 
 		// cache MISS [ [ 1, 2 ] ]
-		assert.equal( add( 1, 2 ), originalAdd( 1, 2 ) );
+		assert.strictEqual( add( 1, 2 ), originalAdd( 1, 2 ) );
 		sinon.assert.callCount( spiedAdd, 1 );
 
 		// cache MISS [ [ 3, 4 ], [ 1, 2 ] ]
-		assert.equal( add( 3, 4 ), originalAdd( 3, 4 ) );
+		assert.strictEqual( add( 3, 4 ), originalAdd( 3, 4 ) );
 		sinon.assert.callCount( spiedAdd, 2 );
 
 		// cache MISS [ [ 5, 6 ], [ 3, 4 ] ]
-		assert.equal( add( 5, 6 ), originalAdd( 5, 6 ) );
+		assert.strictEqual( add( 5, 6 ), originalAdd( 5, 6 ) );
 		sinon.assert.callCount( spiedAdd, 3 );
 
 		// cache MISS [ [ 1, 2 ], [ 5, 6 ] ]
-		assert.equal( add( 1, 2 ), originalAdd( 1, 2 ) );
+		assert.strictEqual( add( 1, 2 ), originalAdd( 1, 2 ) );
 		sinon.assert.callCount( spiedAdd, 4 );
 
 		// cache HIT [ [ 5, 6 ], [ 1, 2 ] ]
-		assert.equal( add( 5, 6 ), originalAdd( 5, 6 ) );
+		assert.strictEqual( add( 5, 6 ), originalAdd( 5, 6 ) );
 		sinon.assert.callCount( spiedAdd, 4 );
 
 		// cache HIT [ [ 1, 2 ], [ 5, 6 ] ]
-		assert.equal( add( 1, 2 ), originalAdd( 1, 2 ) );
+		assert.strictEqual( add( 1, 2 ), originalAdd( 1, 2 ) );
 		sinon.assert.callCount( spiedAdd, 4 );
 
 		// cache MISS [ [ 3, 4 ], [ 1, 2 ] ]
-		assert.equal( add( 3, 4 ), originalAdd( 3, 4 ) );
+		assert.strictEqual( add( 3, 4 ), originalAdd( 3, 4 ) );
 		sinon.assert.callCount( spiedAdd, 5 );
 	} );
 
