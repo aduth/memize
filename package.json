@@ -4,10 +4,10 @@
   "description": "Unabashedly-barebones memoization library with an aim toward speed",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "NODE_ENV=production rollup -c rollup.config.js",
     "postbuild": "npm run minify",
     "minify": "uglifyjs dist/memize.js -c -m --mangle-props domprops --mangle-props regex=\"/^next|prev|val|args|maxSize$/\" > dist/memize.min.js",
-    "mocha": "mocha",
+    "mocha": "NODE_ENV=test mocha",
     "lint": "eslint .",
     "test": "npm run mocha && npm run lint",
     "benchmark": "node benchmark",
@@ -53,6 +53,7 @@
     "ramda": "^0.24.1",
     "rollup": "^0.45.2",
     "rollup-plugin-commonjs": "^8.1.0",
+    "rollup-plugin-replace": "^2.0.0",
     "sinon": "^3.1.0",
     "uglify-js": "^3.0.27",
     "underscore": "^1.8.3"

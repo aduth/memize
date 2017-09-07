@@ -93,5 +93,13 @@ module.exports = function memize( fn, options ) {
 		size = 0;
 	};
 
+	if ( process.env.NODE_ENV === 'test' ) {
+		// Cache is not exposed in the public API, but used in tests to ensure
+		// expected list progression
+		memoized.getCache = function() {
+			return [ head, tail, size ];
+		};
+	}
+
 	return memoized;
 };

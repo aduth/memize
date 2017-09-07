@@ -1,3 +1,4 @@
+const replace = require( 'rollup-plugin-replace' );
 const commonjs = require( 'rollup-plugin-commonjs' );
 
 export default {
@@ -6,6 +7,9 @@ export default {
 	moduleName: 'memize',
 	format: 'iife',
 	plugins: [
+		replace( {
+			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
+		} ),
 		commonjs()
 	]
 };
