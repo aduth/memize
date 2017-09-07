@@ -1,3 +1,8 @@
+#### v1.0.4 (2017-09-06)
+
+- Fix: Resolve infinite loop which can occur due to lingering references in recalling from previous cache
+- Internal: Include more thorough test cases for expected cache list progression
+
 #### v1.0.3 (2017-08-30)
 
 - Fix: Resolve error which can occur in certain conditions with `maxSize`
