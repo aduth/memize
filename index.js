@@ -12,7 +12,19 @@ module.exports = function memize( fn, options ) {
 			args, i;
 
 		searchCache: while ( node ) {
-			// Check whether node arguments match arguments
+			// Perform a shallow equality test to confirm that whether the node
+			// under test is a candidate for the arguments passed. Two arrays
+			// are shallowly equal if their length matches and each entry is
+			// strictly equal between the two sets. Avoid abstracting to a
+			// function which could incur an arguments leaking deoptimization.
+
+			// Check whether node arguments match arguments length
+			if ( node.args.length !== arguments.length ) {
+				node = node.next;
+				continue;
+			}
+
+			// Check whether node arguments match arguments values
 			for ( i = 0; i < len; i++ ) {
 				if ( node.args[ i ] !== arguments[ i ] ) {
 					node = node.next;

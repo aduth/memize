@@ -4,8 +4,8 @@ const memoize = require( '../' );
 
 describe( 'memoize', () => {
 	const sandbox = sinon.sandbox.create();
-	const originalAdd = ( x, y ) => x + y;
-	const spiedAdd = sandbox.spy( ( x, y ) => x + y );
+	const originalAdd = ( x, y = 0 ) => x + y;
+	const spiedAdd = sandbox.spy( originalAdd );
 	let add;
 
 	beforeEach( () => {
@@ -245,5 +245,16 @@ describe( 'memoize', () => {
 		assert.equal( head.next, null );
 
 		sinon.assert.calledTwice( spiedAdd );
+	} );
+
+	it( 'ensures equal argument length before returning cache', () => {
+		const sums = [
+			add( 5, 7 ),
+			add( 5 )
+		];
+
+		sinon.assert.calledTwice( spiedAdd );
+		assert.strictEqual( sums[ 0 ], 12 );
+		assert.strictEqual( sums[ 1 ], 5 );
 	} );
 } );
