@@ -1,4 +1,4 @@
-#### v1.0.5 (---)
+#### v1.0.5 (2018-01-25)
 
 - Fix: Correctly skips incorrect cached value return on mismatched argument length
 

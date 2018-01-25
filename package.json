@@ -1,6 +1,6 @@
 {
   "name": "memize",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Unabashedly-barebones memoization library with an aim toward speed",
   "main": "index.js",
   "scripts": {
