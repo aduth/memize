@@ -1,0 +1,12 @@
+{
+	"root": true,
+	"extends": "@aduth/eslint-config",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"env": {
+		"node": true,
+		"mocha": true
+	}
+}

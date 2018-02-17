@@ -50,13 +50,13 @@ const memize = require( '../' );
 
 const showResults = ( benchmarkResults ) => {
 	const table = new Table( {
-		head: [ 'Name', 'Ops / sec', 'Relative margin of error', 'Sample size' ]
+		head: [ 'Name', 'Ops / sec', 'Relative margin of error', 'Sample size' ],
 	} );
 
 	benchmarkResults.forEach( ( result ) => {
 		const name = result.target.name;
 		const opsPerSecond = result.target.hz.toLocaleString( 'en-US', {
-			maximumFractionDigits: 0
+			maximumFractionDigits: 0,
 		} );
 		const relativeMarginOferror = `± ${result.target.stats.rme.toFixed( 2 )}%`;
 		const sampleSize = result.target.stats.sample.length;
@@ -118,18 +118,18 @@ const fibonacciMultipleObject = ( number, check ) => {
 
 	return (
 		fibonacciMultipleObject( firstValue, {
-			isComplete: firstValue < 2
+			isComplete: firstValue < 2,
 		} ) +
 		fibonacciMultipleObject( secondValue, {
-			isComplete: secondValue < 2
+			isComplete: secondValue < 2,
 		} )
 	);
 };
 
 const fibonacciMultipleDeepEqual = ( { number } ) => {
-	return number < 2
-		? number
-		: (
+	return number < 2 ?
+		number :
+		(
 			fibonacciMultipleDeepEqual( { number: number - 1 } ) +
 			fibonacciMultipleDeepEqual( { number: number - 2 } )
 		);
@@ -200,7 +200,7 @@ const runSingleParameterSuite = () => {
 				resolve();
 			} )
 			.run( {
-				async: true
+				async: true,
 			} );
 	} );
 };
@@ -259,7 +259,7 @@ const runMultiplePrimitiveSuite = () => {
 				resolve();
 			} )
 			.run( {
-				async: true
+				async: true,
 			} );
 	} );
 };
@@ -268,7 +268,7 @@ const runMultipleObjectSuite = () => {
 	const fibonacciSuite = new Benchmark.Suite( 'Multiple parameters (Object)' );
 	const fibonacciNumber = 35;
 	const isComplete = {
-		isComplete: false
+		isComplete: false,
 	};
 
 	const mMemoizee = memoizee( fibonacciMultipleObject );
@@ -320,7 +320,7 @@ const runMultipleObjectSuite = () => {
 				resolve();
 			} )
 			.run( {
-				async: true
+				async: true,
 			} );
 	} );
 };

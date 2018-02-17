@@ -118,7 +118,7 @@ describe( 'memoize', () => {
 		let head, tail, size;
 		add = memoize( spiedAdd, { maxSize: 2 } );
 
-		// cache MISS [ [ 1, 2 ] ]
+		// Cache MISS [ [ 1, 2 ] ]
 		assert.strictEqual( add( 1, 2 ), originalAdd( 1, 2 ) );
 		sinon.assert.callCount( spiedAdd, 1 );
 		( [ head, tail, size ] = add.getCache() );
@@ -129,7 +129,7 @@ describe( 'memoize', () => {
 		assert.equal( head.prev, null );
 		assert.equal( head.next, null );
 
-		// cache MISS [ [ 3, 4 ], [ 1, 2 ] ]
+		// Cache MISS [ [ 3, 4 ], [ 1, 2 ] ]
 		assert.strictEqual( add( 3, 4 ), originalAdd( 3, 4 ) );
 		sinon.assert.callCount( spiedAdd, 2 );
 		( [ head, tail, size ] = add.getCache() );
@@ -144,7 +144,7 @@ describe( 'memoize', () => {
 		assert.strictEqual( head.next.prev, head );
 		assert.equal( head.next.next, null );
 
-		// cache MISS [ [ 5, 6 ], [ 3, 4 ] ]
+		// Cache MISS [ [ 5, 6 ], [ 3, 4 ] ]
 		assert.strictEqual( add( 5, 6 ), originalAdd( 5, 6 ) );
 		sinon.assert.callCount( spiedAdd, 3 );
 		( [ head, tail, size ] = add.getCache() );
@@ -158,7 +158,7 @@ describe( 'memoize', () => {
 		assert.deepEqual( head.next.args, [ 3, 4 ] );
 		assert.equal( head.next.next, null );
 
-		// cache MISS [ [ 1, 2 ], [ 5, 6 ] ]
+		// Cache MISS [ [ 1, 2 ], [ 5, 6 ] ]
 		assert.strictEqual( add( 1, 2 ), originalAdd( 1, 2 ) );
 		sinon.assert.callCount( spiedAdd, 4 );
 		( [ head, tail, size ] = add.getCache() );
@@ -172,7 +172,7 @@ describe( 'memoize', () => {
 		assert.deepEqual( head.next.args, [ 5, 6 ] );
 		assert.equal( head.next.next, null );
 
-		// cache HIT [ [ 5, 6 ], [ 1, 2 ] ]
+		// Cache HIT [ [ 5, 6 ], [ 1, 2 ] ]
 		assert.strictEqual( add( 5, 6 ), originalAdd( 5, 6 ) );
 		sinon.assert.callCount( spiedAdd, 4 );
 		( [ head, tail, size ] = add.getCache() );
@@ -186,7 +186,7 @@ describe( 'memoize', () => {
 		assert.deepEqual( head.next.args, [ 1, 2 ] );
 		assert.equal( head.next.next, null );
 
-		// cache HIT [ [ 1, 2 ], [ 5, 6 ] ]
+		// Cache HIT [ [ 1, 2 ], [ 5, 6 ] ]
 		assert.strictEqual( add( 1, 2 ), originalAdd( 1, 2 ) );
 		sinon.assert.callCount( spiedAdd, 4 );
 		( [ head, tail, size ] = add.getCache() );
@@ -200,7 +200,7 @@ describe( 'memoize', () => {
 		assert.deepEqual( head.next.args, [ 5, 6 ] );
 		assert.equal( head.next.next, null );
 
-		// cache MISS [ [ 3, 4 ], [ 1, 2 ] ]
+		// Cache MISS [ [ 3, 4 ], [ 1, 2 ] ]
 		assert.strictEqual( add( 3, 4 ), originalAdd( 3, 4 ) );
 		sinon.assert.callCount( spiedAdd, 5 );
 		( [ head, tail, size ] = add.getCache() );
@@ -250,7 +250,7 @@ describe( 'memoize', () => {
 	it( 'ensures equal argument length before returning cache', () => {
 		const sums = [
 			add( 5, 7 ),
-			add( 5 )
+			add( 5 ),
 		];
 
 		sinon.assert.calledTwice( spiedAdd );

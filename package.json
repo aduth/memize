@@ -37,10 +37,12 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@aduth/eslint-config": "^2.0.0",
     "benchmark": "^2.1.4",
     "chai": "^4.1.1",
     "cli-table2": "^0.2.0",
-    "eslint": "^4.4.1",
+    "eslint": "^4.18.0",
+    "eslint-plugin-jsdoc": "^3.4.1",
     "fast-memoize": "^2.2.8",
     "lodash": "^4.17.4",
     "lru-memoize": "^1.0.2",

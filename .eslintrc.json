@@ -1,87 +1,11 @@
 {
 	"root": true,
+	"extends": "@aduth/eslint-config/es5",
 	"parserOptions": {
-		"ecmaVersion": 6,
-		"sourceType": "module"
+		"ecmaVersion": 5,
+		"sourceType": "script"
 	},
-	"overrides": [
-		{
-			"files": [ "./index.js" ],
-			"parserOptions": {
-				"ecmaVersion": 5,
-				"sourceType": "script"
-			}
-		}
-	],
 	"env": {
-		"node": true,
-		"mocha": true
-	},
-	"rules": {
-		"array-bracket-spacing": [ "error", "always" ],
-		"brace-style": [ "error", "1tbs" ],
-		"camelcase": "error",
-		"comma-spacing": "error",
-		"comma-style": "error",
-		"computed-property-spacing": [ "error", "always" ],
-		"constructor-super": "error",
-		"curly": "error",
-		"dot-notation": "error",
-		"eqeqeq": [ "error", "allow-null" ],
-		"eol-last": "error",
-		"func-call-spacing": "error",
-		"indent": [ "error", "tab", { "SwitchCase": 1 } ],
-		"jsx-quotes": [ "error", "prefer-double" ],
-		"key-spacing": "error",
-		"keyword-spacing": "error",
-		"max-len": [ "error", { "code": 120 } ],
-		"new-cap": [ "error", { "capIsNew": false, "newIsCap": true } ],
-		"no-console": "error",
-		"no-debugger": "error",
-		"no-dupe-args": "error",
-		"no-dupe-keys": "error",
-		"no-duplicate-case": "error",
-		"no-else-return": "error",
-		"no-empty": [ "error", { "allowEmptyCatch": true } ],
-		"no-extra-semi": "error",
-		"no-lonely-if": "error",
-		"no-mixed-spaces-and-tabs": "error",
-		"no-multiple-empty-lines": [ "error", { "max": 1 } ],
-		"no-multi-spaces": "error",
-		"no-negated-in-lhs": "error",
-		"no-nested-ternary": "error",
-		"no-new": "error",
-		"no-process-exit": "error",
-		"no-redeclare": "error",
-		"no-shadow": "error",
-		"no-spaced-func": "error",
-		"no-trailing-spaces": "error",
-		"no-undef": "error",
-		"no-unreachable": "error",
-		"no-unused-vars": "error",
-		"no-use-before-define": [ "error", "nofunc" ],
-		"object-curly-spacing": [ "error", "always" ],
-		"operator-linebreak": [ "error", "after", { "overrides": {
-			"?": "before",
-			":": "before"
-		} } ],
-		"padded-blocks": [ "error", "never" ],
-		"prefer-const": "error",
-		"quote-props": [ "error", "as-needed", { "keywords": true } ],
-		"quotes": [ "error", "single", "avoid-escape" ],
-		"semi": "error",
-		"semi-spacing": "error",
-		"space-before-blocks": [ "error", "always" ],
-		"space-before-function-paren": [ "error", "never" ],
-		"space-in-parens": [ "error", "always" ],
-		"space-infix-ops": [ "error", { "int32Hint": false } ],
-		"space-unary-ops": [ "error", {
-			"overrides": {
-				"!": true
-			}
-		} ],
-		"valid-jsdoc": [ "error", { "requireReturn": false } ],
-		"comma-dangle": "error",
-		"arrow-parens": "error"
+		"node": true
 	}
 }
