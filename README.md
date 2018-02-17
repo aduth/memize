@@ -118,6 +118,6 @@ Finally, special care is made toward treatment of `arguments` due to engine-spec
 
 ## License
 
-Copyright 2017 Andrew Duthie
+Copyright 2018 Andrew Duthie
 
 Released under the [MIT License](./LICENSE.md).
