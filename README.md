@@ -56,55 +56,51 @@ memoizedFn.clear();
 
 ## Benchmarks
 
-The following benchmarks are performed in Node 8.2.1 on a MacBook Pro (Late 2016), 2.9 GHz Intel Core i7. Lodash, Underscore, and Ramda are only included in the first benchmark because they do not support multiple argument memoization.
+The following benchmarks are performed in Node 10.16.0 on a MacBook Pro (2019), 2.4 GHz 8-Core Intel Core i9, 32 GB 2400 MHz DDR4 RAM.
 
 __Single argument__
 
-![Benchmark](https://cldup.com/BbpWXvSdjR.png)
+Name               | Ops / sec   | Relative margin of error | Sample size
+-------------------|-------------|--------------------------|------------
+fast-memoize       | 360,812,575 | ± 0.55%                  | 87         
+memize             | 128,909,282 | ± 1.06%                  | 87         
+moize              | 102,858,648 | ± 0.66%                  | 88         
+lru-memoize        | 71,589,564  | ± 0.90%                  | 88         
+lodash             | 49,575,743  | ± 1.00%                  | 88         
+underscore         | 35,805,268  | ± 0.86%                  | 88         
+memoizee           | 35,357,004  | ± 0.55%                  | 87         
+moize (serialized) | 27,246,184  | ± 0.88%                  | 87         
+memoizerific       | 8,647,735   | ± 0.91%                  | 91         
+ramda              | 8,011,334   | ± 0.74%                  | 90         
+memoizejs          | 2,111,745   | ± 0.52%                  | 88         
 
-| Name               | Ops / sec  | Relative margin of error |
-| -------------------|------------|------------------------- |
-| memize             | 46,802,274 | ± 0.95%                  |
-| moize              | 36,659,057 | ± 1.09%                  |
-| fast-memoize       | 28,318,096 | ± 2.31%                  |
-| moize (serialized) | 14,363,716 | ± 0.82%                  |
-| underscore         | 12,934,260 | ± 0.75%                  |
-| lru-memoize        | 11,648,537 | ± 1.13%                  |
-| memoizee           | 11,120,460 | ± 1.02%                  |
-| lodash             | 9,896,950  | ± 0.51%                  |
-| memoizerific       | 2,252,795  | ± 1.26%                  |
-| memoizejs          | 1,357,025  | ± 0.76%                  |
-| ramda              | 1,109,387  | ± 0.85%                  |
+_**\* Note**: `fast-memoize` uses [`Function.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length) to optimize for singular argument functions, which [can yield unexpected behavior](https://github.com/caiogondim/fast-memoize.js#rest--default-parameters) if not account for._
 
 __Multiple arguments (primitive)__
 
-![Benchmark](https://cldup.com/R5LPxwxpAH.png)
-
-| Name               | Ops / sec  | Relative margin of error |
-| -------------------|------------|------------------------- |
-| memize             | 35,171,560 | ± 0.62%                  |
-| moize              | 22,314,974 | ± 1.01%                  |
-| moize (serialized) | 11,188,031 | ± 0.84%                  |
-| lru-memoize        | 8,625,528  | ± 1.83%                  |
-| memoizee           | 8,435,400  | ± 0.77%                  |
-| memoizerific       | 1,438,243  | ± 1.04%                  |
-| memoizejs          | 1,130,111  | ± 0.61%                  |
-| fast-memoize       | 754,958    | ± 0.64%                  |
+Name               | Ops / sec  | Relative margin of error | Sample size
+-------------------|------------|--------------------------|------------
+memize             | 81,460,517 | ± 0.61%                  | 88         
+moize              | 66,896,395 | ± 0.90%                  | 83         
+lru-memoize        | 26,315,198 | ± 1.26%                  | 85         
+memoizee           | 18,237,056 | ± 0.60%                  | 90         
+moize (serialized) | 15,207,105 | ± 0.78%                  | 84         
+memoizerific       | 6,363,555  | ± 0.63%                  | 88         
+memoizejs          | 1,764,673  | ± 0.57%                  | 90         
+fast-memoize       | 1,560,421  | ± 0.72%                  | 87         
 
 __Multiple arguments (non-primitive)__
 
-![Benchmark](https://cldup.com/RYJPiEQxC5.png)
-
-| Name               | Ops / sec  | Relative margin of error |
-| -------------------|------------|------------------------- |
-| memize             | 35,439,005 | ± 0.58%                  |
-| moize              | 22,624,991 | ± 1.11%                  |
-| lru-memoize        | 8,562,363  | ± 1.76%                  |
-| memoizee           | 8,424,725  | ± 1.11%                  |
-| moize (serialized) | 1,575,815  | ± 0.87%                  |
-| memoizerific       | 1,466,993  | ± 0.87%                  |
-| memoizejs          | 832,957    | ± 0.94%                  |
-| fast-memoize       | 649,054    | ± 0.53%                  |
+Name               | Ops / sec  | Relative margin of error | Sample size
+-------------------|------------|--------------------------|------------
+memize             | 79,105,918 | ± 0.81%                  | 86         
+moize              | 62,374,610 | ± 0.55%                  | 87         
+lru-memoize        | 24,814,747 | ± 0.54%                  | 89         
+memoizee           | 12,119,005 | ± 0.47%                  | 89         
+memoizerific       | 6,748,675  | ± 0.66%                  | 88         
+moize (serialized) | 2,027,250  | ± 1.07%                  | 87         
+fast-memoize       | 1,263,457  | ± 1.00%                  | 89         
+memoizejs          | 1,075,690  | ± 0.61%                  | 87         
 
 ## How it works
 
