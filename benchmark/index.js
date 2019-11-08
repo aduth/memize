@@ -39,13 +39,13 @@ const Table = require( 'cli-table2' );
 const ora = require( 'ora' );
 const underscore = require( 'underscore' ).memoize;
 const lodash = require( 'lodash' ).memoize;
-const ramda = require( 'ramda' ).memoize;
+const ramda = require( 'ramda' ).memoizeWith( require( 'ramda' ).identity );
 const memoizee = require( 'memoizee' );
 const fastMemoize = require( 'fast-memoize' );
 const memoizejs = require( 'memoizejs' );
 const memoizerific = require( 'memoizerific' );
 const lruMemoize = require( 'lru-memoize' ).default;
-const moize = require( 'moize' );
+const moize = require( 'moize' ).default;
 const memize = require( '../' );
 
 const showResults = ( benchmarkResults ) => {
@@ -124,15 +124,6 @@ const fibonacciMultipleObject = ( number, check ) => {
 			isComplete: secondValue < 2,
 		} )
 	);
-};
-
-const fibonacciMultipleDeepEqual = ( { number } ) => {
-	return number < 2 ?
-		number :
-		(
-			fibonacciMultipleDeepEqual( { number: number - 1 } ) +
-			fibonacciMultipleDeepEqual( { number: number - 2 } )
-		);
 };
 
 const runSingleParameterSuite = () => {
