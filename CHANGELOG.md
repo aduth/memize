@@ -1,4 +1,4 @@
-#### v1.1.0 (Unreleased)
+#### v1.1.0 (2020-03-07)
 
 - New Feature: Add TypeScript type definition.
 
