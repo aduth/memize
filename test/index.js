@@ -3,7 +3,7 @@ const sinon = require( 'sinon' );
 const memoize = require( '../' );
 
 describe( 'memoize', () => {
-	const sandbox = sinon.sandbox.create();
+	const sandbox = sinon.createSandbox();
 	const originalAdd = ( x, y = 0 ) => x + y;
 	const spiedAdd = sandbox.spy( originalAdd );
 	let add;
