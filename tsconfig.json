@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"target": "ES5",
+		"allowJs": true,
+		"checkJs": true,
+		"noEmit": true,
+		"strictNullChecks": true,
+		"noImplicitAny": true
+	},
+	"files": [
+		"index.js"
+	]
+}

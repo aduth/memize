@@ -7,5 +7,10 @@
 	},
 	"env": {
 		"node": true
+	},
+	"rules": {
+		"one-var": "off",
+		"jsdoc/check-tag-names": "off",
+		"valid-jsdoc": "off"
 	}
 }

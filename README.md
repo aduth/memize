@@ -104,7 +104,7 @@ memoizejs          | 1,075,690  | ± 0.61%                  | 87
 
 ## How it works
 
-If you haven't already, feel free to [glance over the source code](./index.js). It's approximately 100 lines of heavily commented code, and should help provide substance to the implementation concepts.
+If you haven't already, feel free to [glance over the source code](./index.js). The code is heavily commented and should help provide substance to the implementation concepts.
 
 Memize creates a [last-in first-out stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) implemented as a [doubly linked list](https://en.wikipedia.org/wiki/Doubly_linked_list). It biases recent access favoring real-world scenarios where the function is subsequently invoked multiple times with the same arguments. The choice to implement as a linked list is due to dramatically better performance characteristics compared to `Array#unshift` for surfacing an entry to the head of the list ([jsperf](https://jsperf.com/array-unshift-linked-list)). A downside of linked lists is inability to efficiently access arbitrary indices, but iterating from the beginning of the cache list is optimized by guaranteeing the list is sorted by recent access / insertion.
 
