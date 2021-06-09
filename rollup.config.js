@@ -1,5 +1,5 @@
-const replace = require( 'rollup-plugin-replace' );
-const commonjs = require( 'rollup-plugin-commonjs' );
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default {
 	input: 'index.js',
@@ -10,7 +10,10 @@ export default {
 	},
 	plugins: [
 		replace( {
-			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
+			preventAssignment: true,
+			values: {
+				'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
+			},
 		} ),
 		commonjs()
 	]
