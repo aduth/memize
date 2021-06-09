@@ -13,6 +13,7 @@
     "test:lint": "eslint .",
     "test:types": "tsc",
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
+    "prebenchmark": "npm install --no-save benchmark memoizee moize ramda underscore lodash fast-memoize lru-memoize memoizejs memoizerific cli-table2 ora",
     "benchmark": "node benchmark",
     "prepublishOnly": "npm test && npm run build"
   },
@@ -43,27 +44,15 @@
   "devDependencies": {
     "@aduth/eslint-config": "^3.0.0",
     "@types/node": "^13.9.0",
-    "benchmark": "^2.1.4",
     "chai": "^4.2.0",
-    "cli-table2": "^0.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-jsdoc": "^22.0.0",
-    "fast-memoize": "^2.5.2",
-    "lodash": "^4.17.15",
-    "lru-memoize": "^1.1.0",
-    "memoizee": "^0.4.14",
-    "memoizejs": "^0.1.1",
-    "memoizerific": "^1.11.3",
     "mocha": "^7.1.0",
-    "moize": "^5.4.5",
-    "ora": "^4.0.3",
-    "ramda": "^0.27.0",
     "rollup": "^2.0.2",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-replace": "^2.2.0",
     "sinon": "^9.0.0",
     "typescript": "^3.8.3",
-    "uglify-js": "^3.8.0",
-    "underscore": "^1.9.2"
+    "uglify-js": "^3.8.0"
   }
 }
