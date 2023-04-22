@@ -1,6 +1,6 @@
 {
 	"root": true,
-	"extends": "@aduth/eslint-config/es5",
+	"extends": "@aduth/eslint-config",
 	"parserOptions": {
 		"ecmaVersion": 5,
 		"sourceType": "script"
@@ -9,8 +9,12 @@
 		"node": true
 	},
 	"rules": {
+		"no-var": "off",
 		"one-var": "off",
+		"prefer-spread": "off",
 		"jsdoc/check-tag-names": "off",
-		"valid-jsdoc": "off"
+		"valid-jsdoc": "off",
+		"no-redeclare": "off",
+		"@typescript-eslint/no-redeclare": "error"
 	}
 }

@@ -1,2 +1,4 @@
 dist
+benchmark
+index.d.ts
 rollup.config.js
