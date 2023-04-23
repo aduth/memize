@@ -3,8 +3,8 @@
   "version": "1.1.0",
   "description": "Unabashedly-barebones memoization library with an aim toward speed",
   "main": "dist/index.cjs",
-  "module": "index.mjs",
-  "types": "index.d.ts",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "npm run build:bundle && npm run build:types",
@@ -19,9 +19,7 @@
     "prepublishOnly": "npm test && npm run build"
   },
   "files": [
-    "dist",
-    "index.mjs",
-    "index.d.ts"
+    "dist"
   ],
   "keywords": [
     "memoize",
@@ -49,19 +47,17 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/register": "^7.21.0",
     "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-replace": "^5.0.2",
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
     "@types/node": "^14.18.42",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
     "chai": "^4.3.4",
-    "eslint": "^8.36.0",
+    "eslint": "^7.28.0",
     "mocha": "^10.2.0",
+    "prettier": "^2.8.8",
     "rollup": "^3.20.2",
     "sinon": "^11.1.1",
-    "typescript": "^5.0.4",
-    "uglify-js": "^3.13.9"
-  }
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {}
 }

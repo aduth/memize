@@ -1,58 +1,38 @@
 import babel from '@rollup/plugin-babel';
-import terser from '@rollup/plugin-terser';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 
+const commonConfig = {
+	input: 'index.js',
+	plugins: [
+		babel({
+			babelHelpers: 'bundled',
+			exclude: 'node_modules/**',
+		}),
+	],
+};
 export default [
 	{
-		input: 'index.js',
-		output: {
-			format: 'umd',
-			name: 'memize',
-			file: 'dist/memize.js',
-		},
-		plugins: [
-			nodeResolve({
-				extensions: ['.js'],
-			}),
-			babel({
-				extensions: ['.js'],
-				babelHelpers: 'bundled',
-				exclude: 'node_modules/**',
-			}),
-		],
-	},
-	{
-		input: 'index.js',
-		output: {
-			format: 'umd',
-			name: 'memize',
-			file: 'dist/memize.min.js',
-		},
-		plugins: [
-			nodeResolve({
-				extensions: ['.js'],
-			}),
-			babel({
-				babelHelpers: 'bundled',
-				exclude: 'node_modules/**',
-			}),
-			terser(),
-		],
-	},
-	{
-		input: 'index.js',
+		...commonConfig,
 		output: {
 			format: 'cjs',
 			name: 'memize',
 			file: 'dist/memize.cjs',
 		},
+	},
+	{
+		...commonConfig,
+		output: {
+			format: 'es',
+			name: 'memize',
+			file: 'dist/memize.js',
+		},
 		plugins: [
-			nodeResolve({
-				extensions: ['.js'],
-			}),
-			babel({
-				babelHelpers: 'bundled',
-				exclude: 'node_modules/**',
+			...commonConfig.plugins,
+			replace({
+				preventAssignment: true,
+				values: {
+					'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+				},
 			}),
 		],
 	},

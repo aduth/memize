@@ -1,11 +1,11 @@
 import assert from 'assert';
 import sinon from 'sinon';
-import memoize from '../index.js';
+import memoize from '../index.js'
 
 describe( 'memoize', () => {
 	const sandbox = sinon.createSandbox();
 	const originalAdd = ( x, y = 0 ) => x + y;
-	  const spiedAdd = sandbox.spy( originalAdd );
+	const spiedAdd = sandbox.spy( originalAdd );
 	let add;
 
 	beforeEach( () => {

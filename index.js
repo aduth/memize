@@ -27,22 +27,15 @@
  */
 
 /**
- * The memoized function.
- *
- * @template {(...args: unknown[]) => unknown} F
- * @typedef {(...args: Parameters<F>) => ReturnType<F>} MemoizedFunction
- */
-
-/**
  * Accepts a function to be memoized, and returns a new memoized function, with
  * optional options.
  *
- * @template {Function} F
+ * @template {(...args: unknown[]) => unknown} F
  *
  * @param {F}             fn        Function to memoize.
  * @param {MemizeOptions} [options] Options object.
  *
- * @return {MemoizedFunction<F> & MemizeMemoizedFunction} Memoized function.
+ * @return {((...args: Parameters<F>) => ReturnType<F>) & MemizeMemoizedFunction} Memoized function.
  */
 export default function memize( fn, options ) {
 	var size = 0;
