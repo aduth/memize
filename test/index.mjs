@@ -1,6 +1,6 @@
 import assert from 'assert';
 import sinon from 'sinon';
-import memoize from '../index.js'
+import memoize from '../index.mjs';
 
 describe( 'memoize', () => {
 	const sandbox = sinon.createSandbox();

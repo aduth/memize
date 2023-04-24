@@ -11,6 +11,6 @@
 		"noImplicitAny": true
 	},
 	"files": [
-		"index.js"
+		"index.mjs"
 	]
 }

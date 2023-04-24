@@ -9,6 +9,7 @@
 		"node": true
 	},
 	"rules": {
+		"semi": "error",
 		"no-var": "off",
 		"one-var": "off",
 		"prefer-spread": "off",
