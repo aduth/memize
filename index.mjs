@@ -30,7 +30,7 @@
  * Accepts a function to be memoized, and returns a new memoized function, with
  * optional options.
  *
- * @template {(...args: unknown[]) => unknown} F
+ * @template {(...args: any[]) => any} F
  *
  * @param {F}             fn        Function to memoize.
  * @param {MemizeOptions} [options] Options object.
