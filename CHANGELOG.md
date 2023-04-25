@@ -1,3 +1,9 @@
+#### v2.0.0 (Unreleased)
+
+- Breaking Change: Package now uses native ES Modules.
+- Breaking Change: Prebuilt browser-ready version has been removed.
+- Bug Fix: TypeScript types improved to maintain the original function signature in the memoized function.
+
 #### v1.1.0 (2020-03-07)
 
 - New Feature: Add TypeScript type definition.

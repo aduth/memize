@@ -32,10 +32,6 @@ Using [npm](https://www.npmjs.com/) as a package manager:
 npm install memize
 ```
 
-Otherwise, download a pre-built copy from unpkg:
-
-[https://unpkg.com/memize/dist/memize.min.js](https://unpkg.com/memize/dist/memize.min.js)
-
 ## Usage
 
 Memize accepts a function to be memoized, and returns a new memoized function.
