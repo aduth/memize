@@ -1,12 +1,12 @@
-const babel = require('@rollup/plugin-babel');
-const replace = require('@rollup/plugin-replace');
+import babel from '@rollup/plugin-babel';
+import replace from '@rollup/plugin-replace';
 
-module.exports = {
-	input: 'index.mjs',
+export default {
+	input: 'index.js',
 	output: {
 		format: 'es',
 		name: 'memize',
-		file: 'dist/index.mjs',
+		file: 'dist/index.js',
 	},
 	plugins: [
 		babel({

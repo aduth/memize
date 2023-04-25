@@ -2,18 +2,15 @@
   "name": "memize",
   "version": "1.1.0",
   "description": "Unabashedly-barebones memoization library with an aim toward speed",
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.mts",
-  "exports": {
-    ".": "./dist/index.mjs"
-  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run build:bundle && npm run build:types",
     "build:bundle": "rollup -c rollup.config.js",
     "build:types": "tsc -b tsconfig.decl.json",
     "test:unit": "NODE_ENV=test mocha",
-    "test:lint": "eslint --ext=mjs .",
+    "test:lint": "eslint .",
     "test:types": "tsc -b",
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "prebenchmark": "npm install --no-save benchmark memoizee moize ramda underscore lodash fast-memoize lru-memoize memoizejs memoizerific cli-table2 ora",
