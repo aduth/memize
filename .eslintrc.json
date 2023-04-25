@@ -1,20 +1,16 @@
 {
 	"root": true,
-	"extends": "@aduth/eslint-config",
+	"extends": "@aduth/eslint-config/es5",
 	"parserOptions": {
-		"ecmaVersion": 6,
+		"ecmaVersion": 2015,
 		"sourceType": "module"
 	},
 	"env": {
 		"node": true
 	},
 	"rules": {
-		"semi": "error",
-		"no-var": "off",
 		"one-var": "off",
-		"prefer-spread": "off",
 		"jsdoc/check-tag-names": "off",
-		"valid-jsdoc": "off",
-		"no-redeclare": "off"
+		"valid-jsdoc": "off"
 	}
 }
