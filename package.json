@@ -41,11 +41,6 @@
   "license": "MIT",
   "devDependencies": {
     "@aduth/eslint-config": "^4.4.1",
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.3",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/register": "^7.21.0",
-    "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-replace": "^5.0.2",
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
