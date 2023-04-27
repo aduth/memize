@@ -3,7 +3,8 @@
 	"version": "2.0.0",
 	"description": "Unabashedly-barebones memoization library with an aim toward speed",
 	"type": "module",
-	"main": "dist/index.js",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "npm run build:bundle && npm run build:types",
