@@ -37,7 +37,7 @@
  *
  * @return {((...args: Parameters<F>) => ReturnType<F>) & MemizeMemoizedFunction} Memoized function.
  */
-export default function memize( fn, options ) {
+export default function memize(fn, options) {
 	var size = 0;
 
 	/** @type {?MemizeCacheNode|undefined} */
@@ -48,12 +48,13 @@ export default function memize( fn, options ) {
 
 	options = options || {};
 
-	function memoized( /* ...args */ ) {
+	function memoized(/* ...args */) {
 		var node = head,
 			len = arguments.length,
-			args, i;
+			args,
+			i;
 
-		searchCache: while ( node ) {
+		searchCache: while (node) {
 			// Perform a shallow equality test to confirm that whether the node
 			// under test is a candidate for the arguments passed. Two arrays
 			// are shallowly equal if their length matches and each entry is
@@ -61,14 +62,14 @@ export default function memize( fn, options ) {
 			// function which could incur an arguments leaking deoptimization.
 
 			// Check whether node arguments match arguments length
-			if ( node.args.length !== arguments.length ) {
+			if (node.args.length !== arguments.length) {
 				node = node.next;
 				continue;
 			}
 
 			// Check whether node arguments match arguments values
-			for ( i = 0; i < len; i++ ) {
-				if ( node.args[ i ] !== arguments[ i ] ) {
+			for (i = 0; i < len; i++) {
+				if (node.args[i] !== arguments[i]) {
 					node = node.next;
 					continue searchCache;
 				}
@@ -77,23 +78,23 @@ export default function memize( fn, options ) {
 			// At this point we can assume we've found a match
 
 			// Surface matched node to head if not already
-			if ( node !== head ) {
+			if (node !== head) {
 				// As tail, shift to previous. Must only shift if not also
 				// head, since if both head and tail, there is no previous.
-				if ( node === tail ) {
+				if (node === tail) {
 					tail = node.prev;
 				}
 
 				// Adjust siblings to point to each other. If node was tail,
 				// this also handles new tail's empty `next` assignment.
-				/** @type {MemizeCacheNode} */ ( node.prev ).next = node.next;
-				if ( node.next ) {
+				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
+				if (node.next) {
 					node.next.prev = node.prev;
 				}
 
 				node.next = head;
 				node.prev = null;
-				/** @type {MemizeCacheNode} */ ( head ).prev = node;
+				/** @type {MemizeCacheNode} */ (head).prev = node;
 				head = node;
 			}
 
@@ -104,23 +105,23 @@ export default function memize( fn, options ) {
 		// No cached value found. Continue to insertion phase:
 
 		// Create a copy of arguments (avoid leaking deoptimization)
-		args = new Array( len );
-		for ( i = 0; i < len; i++ ) {
-			args[ i ] = arguments[ i ];
+		args = new Array(len);
+		for (i = 0; i < len; i++) {
+			args[i] = arguments[i];
 		}
 
 		node = {
 			args: args,
 
 			// Generate the result from original function
-			val: fn.apply( null, args ),
+			val: fn.apply(null, args),
 		};
 
 		// Don't need to check whether node is already head, since it would
 		// have been returned above already if it was
 
 		// Shift existing head down list
-		if ( head ) {
+		if (head) {
 			head.prev = node;
 			node.next = head;
 		} else {
@@ -129,9 +130,9 @@ export default function memize( fn, options ) {
 		}
 
 		// Trim tail if we're reached max size and are pending cache insertion
-		if ( size === /** @type {MemizeOptions} */ ( options ).maxSize ) {
-			tail = /** @type {MemizeCacheNode} */ ( tail ).prev;
-			/** @type {MemizeCacheNode} */ ( tail ).next = null;
+		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
+			tail = /** @type {MemizeCacheNode} */ (tail).prev;
+			/** @type {MemizeCacheNode} */ (tail).next = null;
 		} else {
 			size++;
 		}
@@ -141,17 +142,17 @@ export default function memize( fn, options ) {
 		return node.val;
 	}
 
-	memoized.clear = function() {
+	memoized.clear = function () {
 		head = null;
 		tail = null;
 		size = 0;
 	};
 
-	if ( process.env.NODE_ENV === 'test' ) {
+	if (process.env.NODE_ENV === 'test') {
 		// Cache is not exposed in the public API, but used in tests to ensure
 		// expected list progression
-		memoized.getCache = function() {
-			return [ head, tail, size ];
+		memoized.getCache = function () {
+			return [head, tail, size];
 		};
 	}
 
