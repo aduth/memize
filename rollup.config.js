@@ -4,7 +4,6 @@ export default {
 	input: 'index.js',
 	output: {
 		format: 'es',
-		name: 'memize',
 		file: 'dist/index.js',
 	},
 	plugins: [
