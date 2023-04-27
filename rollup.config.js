@@ -22,13 +22,5 @@ export default [
 			format: 'cjs',
 			file: 'dist/index.cjs',
 		},
-		plugins: [
-			replace({
-				preventAssignment: true,
-				values: {
-					'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-				},
-			}),
-		],
 	},
 ];
