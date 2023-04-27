@@ -1,4 +1,4 @@
-#### v2.0.0 (Unreleased)
+#### v2.0.0 (2023-04-26)
 
 - Breaking Change: Package now uses native ES Modules.
 - Breaking Change: Prebuilt browser-ready version has been removed.
