@@ -1,12 +1,10 @@
 import replace from '@rollup/plugin-replace';
-import commonjs from '@rollup/plugin-commonjs';
 
 export default {
 	input: 'index.js',
 	output: {
-		'file': __dirname + '/dist/memize.js',
-		format: 'iife',
-		name: 'memize',
+		format: 'es',
+		file: 'dist/index.js',
 	},
 	plugins: [
 		replace( {
@@ -15,6 +13,5 @@ export default {
 				'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
 			},
 		} ),
-		commonjs()
-	]
+	],
 };

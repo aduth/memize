@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
-		"module": "CommonJS",
+		"target": "ES2017",
+		"lib": ["ES2017", "DOM", "DOM.Iterable"],
 		"moduleResolution": "node",
-		"target": "ES5",
 		"allowJs": true,
 		"checkJs": true,
 		"noEmit": true,

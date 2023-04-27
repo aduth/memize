@@ -2,25 +2,23 @@
   "name": "memize",
   "version": "1.1.0",
   "description": "Unabashedly-barebones memoization library with an aim toward speed",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run build:bundle && npm run build:types",
-    "build:bundle": "NODE_ENV=production rollup -c rollup.config.js",
-    "postbuild:bundle": "npm run minify",
-    "build:types": "tsc -p tsconfig.decl.json",
-    "minify": "uglifyjs dist/memize.js -c -m --mangle-props domprops --mangle-props regex=\"/^next|prev|val|args|maxSize$/\" > dist/memize.min.js",
+    "build:bundle": "rollup -c rollup.config.js",
+    "build:types": "tsc -b tsconfig.decl.json",
     "test:unit": "NODE_ENV=test mocha",
     "test:lint": "eslint .",
-    "test:types": "tsc",
+    "test:types": "tsc -b",
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "prebenchmark": "npm install --no-save benchmark memoizee moize ramda underscore lodash fast-memoize lru-memoize memoizejs memoizerific cli-table2 ora",
     "benchmark": "node benchmark",
     "prepublishOnly": "npm test && npm run build"
   },
   "files": [
-    "dist",
-    "index.js",
-    "index.d.ts"
+    "dist"
   ],
   "keywords": [
     "memoize",
@@ -42,17 +40,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@aduth/eslint-config": "^3.0.0",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-replace": "^2.4.2",
-    "@types/node": "^15.12.2",
+    "@aduth/eslint-config": "^4.4.1",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^14.18.42",
     "chai": "^4.3.4",
     "eslint": "^7.28.0",
-    "eslint-plugin-jsdoc": "^35.1.3",
-    "mocha": "^9.0.0",
-    "rollup": "^2.51.1",
+    "mocha": "^10.2.0",
+    "rollup": "^3.20.2",
     "sinon": "^11.1.1",
-    "typescript": "^4.3.2",
-    "uglify-js": "^3.13.9"
+    "typescript": "^4.3.2"
   }
 }

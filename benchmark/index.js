@@ -30,7 +30,6 @@
  */
 
 /* eslint-disable no-console */
-/* globals Promise:true */
 
 'use strict';
 

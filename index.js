@@ -30,14 +30,14 @@
  * Accepts a function to be memoized, and returns a new memoized function, with
  * optional options.
  *
- * @template {Function} F
+ * @template {(...args: any[]) => any} F
  *
  * @param {F}             fn        Function to memoize.
  * @param {MemizeOptions} [options] Options object.
  *
- * @return {F & MemizeMemoizedFunction} Memoized function.
+ * @return {((...args: Parameters<F>) => ReturnType<F>) & MemizeMemoizedFunction} Memoized function.
  */
-function memize( fn, options ) {
+export default function memize( fn, options ) {
 	var size = 0;
 
 	/** @type {?MemizeCacheNode|undefined} */
@@ -163,5 +163,3 @@ function memize( fn, options ) {
 	// @ts-ignore
 	return memoized;
 }
-
-module.exports = memize;

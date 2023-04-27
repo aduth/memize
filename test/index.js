@@ -1,6 +1,6 @@
-const assert = require( 'assert' );
-const sinon = require( 'sinon' );
-const memoize = require( '../' );
+import assert from 'assert';
+import sinon from 'sinon';
+import memoize from '../index.js';
 
 describe( 'memoize', () => {
 	const sandbox = sinon.createSandbox();
