@@ -1,3 +1,7 @@
+#### v2.1.0 (2023-05-12)
+
+- New Feature: Restore backward-compatibility for CommonJS.
+
 #### v2.0.0 (2023-04-26)
 
 - Breaking Change: Package now uses native ES Modules.
