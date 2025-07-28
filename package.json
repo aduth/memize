@@ -5,14 +5,20 @@
 	"type": "module",
 	"main": "dist/index.js",
 	"exports": {
-		"import": "./dist/index.js",
-		"require": "./dist/index.cjs"
+		"import": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"require": {
+			"types": "./dist/index.d.cts",
+			"default": "./dist/index.cjs"
+		}
 	},
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "npm run build:bundle && npm run build:types",
 		"build:bundle": "rollup -c rollup.config.js",
-		"build:types": "tsc -b tsconfig.decl.json",
+		"build:types": "tsc -b tsconfig.decl.json && tsc -b tsconfig.decl.cts.json",
 		"test:unit": "NODE_ENV=test mocha",
 		"test:lint": "eslint .",
 		"test:types": "tsc -b",
