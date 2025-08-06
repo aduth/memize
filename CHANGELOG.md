@@ -1,4 +1,4 @@
-#### Unreleased
+#### v2.1.1 (2025-08-06)
 
 - Bug Fix: Fix TypeScript type resolution when importing with `node16` module resolution from a CommonJS project. Thanks to @joshkel for the fix!
 
