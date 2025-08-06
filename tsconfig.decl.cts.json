@@ -1,0 +1,12 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"noEmit": false,
+		"declaration": true,
+		"emitDeclarationOnly": true
+	},
+	"files": [
+		"dist/index.cjs"
+	]
+}
